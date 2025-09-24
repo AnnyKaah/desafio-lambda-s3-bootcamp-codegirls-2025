@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://via.placeholder.com/800x200/FF9900/FFFFFF?text=AWS+Lambda+%26+S3+Automation+-+Serverless+Project" alt="Banner AWS Lambda S3" width="800"/>
+  <img src="images/banner-desafio-lambda.png" alt="Banner AWS Lambda S3" width="800"/>
   <br><br>
   <img src="https://img.shields.io/badge/AWS-Lambda-blueviolet?style=for-the-badge&logo=amazon-aws" alt="AWS Lambda Badge">
   <img src="https://img.shields.io/badge/Python-3.12-orange?style=for-the-badge&logo=python" alt="Python Badge">
@@ -8,7 +8,7 @@
 </p>
 
 <div align="center">
-<br>
+
 
 # Desafio: Automação Serverless com AWS Lambda e S3 - Bootcamp Santander Code Girls 2025
 
@@ -28,7 +28,7 @@ Olá! Eu sou **Anny Karoline**, desenvolvedora em ascensão e participante do Bo
 - **Impacto:** Prova idempotência (execuções repetíveis sem estado) e custo zero (1M requests grátis/mês). Em um job, isso otimizaria workflows como análise de dados de clientes.
 - **Tempo de Desenvolvimento:** 25 min (setup + teste). Deploy idempotente via console AWS (us-east-1).
 
-## 🔄 Como Funciona? (Arquitetura)
+## Como Funciona? (Arquitetura)
 Aqui vai um diagrama simples do fluxo event-driven. Ele mostra como o upload no S3 aciona a Lambda automaticamente, processa o evento e loga resultados – tudo serverless e escalável!
 
 ```mermaid
@@ -44,14 +44,15 @@ graph TD
     style D fill:#4A90E2
     style E fill:#9013FE
     style F fill:#00FF00,stroke:#333,stroke-width:2px
+```
 
-## 🔄 Exemplo Real de Funcionamento
+## Exemplo Real de Funcionamento
 - **Cenário:** Ao fazer upload de um arquivo como `teste.txt` no bucket S3, o evento "ObjectCreated" é disparado automaticamente.
 - **O Que Acontece na Lambda:** A função processa o evento, lista os objetos no bucket usando boto3, e loga no CloudWatch:  
   `"Arquivo 'teste.txt' processado! Objetos: 1"`.  
   Isso prova a automação serverless em ação – execução em <5s, sem intervenção manual.
 
-## 🛠️ Passos do Lab Hands-On
+## Passos do desafio prático
 Repliquei tudo no AWS Console (Free Tier, região us-east-1). Tempo total: ~25 min. Veja o código fonte completo em `lambda-code.py`. **Pré-requisitos:** Conta AWS ativa, permissões IAM básicas.
 
 1. **Criar S3 Bucket:**
@@ -117,15 +118,15 @@ Repliquei tudo no AWS Console (Free Tier, região us-east-1). Tempo total: ~25 m
 - **Escalabilidade:** A arquitetura lida com milhares de uploads/dia sem provisionamento manual – ideal para produção.
 
 
-## 💡 Dicas para Quem Vem Depois (Minhas Anotações Práticas)
+## Dicas para Quem Vem Depois (Minhas Anotações Práticas)
 Essas são minhas notas "de cabeceira" pro próximo que tentar o lab – economiza tempo e frustração!
 
 - **Setup Rápido:** Sempre crie a **role IAM primeiro** – evita idas e vindas no console. Eu fiz isso e o deploy fluiu liso.
 - **Debug Ninja:** Use **CloudWatch Logs Insights** pra filtrar erros (ex.: query por *"AccessDenied"*). Teste Lambda isolada com **eventos mock** na aba "Test" – salvou meu dia antes do trigger real.
 - **Boas Práticas:** Use **variáveis de ambiente** pro bucket name (não hardcode); monitore quotas Free Tier (**1M requests** grátis). Pra prod, adicione **dead-letter queues** pra falhas – li nas docs e evitei surpresas.
-- **Recursos que Ajudei:** Docs **AWS Lambda Samples** (pra mais códigos prontos); a vídeo-aula sobre **"Event Sources"** foi ouro puro. Se travar em Python, **Stack Overflow salva** – busque "boto3 s3 event lambda" e pronto!
+- **Recursos que Ajudaram:** Docs **AWS Lambda Samples** (pra mais códigos prontos). Se travar em Python, **Stack Overflow salva** – busque "boto3 s3 event lambda" e pronto!
 
-## 🚀 Como Rodar Esse Projeto
+## Como Rodar Esse Projeto
 Quer testar? É rápido e grátis!
 1. Crie conta AWS Free Tier ([aws.amazon.com/free](https://aws.amazon.com/free/)).
 2. Siga os passos acima no console (copie o código de `lambda-code.py`).
